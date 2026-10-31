@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bộ prompt cho giáo viên | Thầy Hợi</title>
+<meta name="description" content="Bộ prompt AI dùng nhanh cho giáo viên tiểu học: soạn bài, nhận xét học sinh, xử lý công văn, tạo hình ảnh và video minh họa.">
+<meta name="author" content="Thầy Hợi">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✏️</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f8ff;--sf:#fff;--tx:#1b2430;--mu:#55627a;--ln:#d8e3f3;--ac:#1f6fd6;--hero:#1b64c8;--pn:#f4f8ff;--mk:#ffd93d;--mt:#3a2e00;--ok:#1f8a54;--fl:#fff;--bt:#fff;--sh:0 1px 3px rgba(20,40,80,.1)}
+[data-g="0"]{--gc:#c2540a;--gt:#fff0e2}
+[data-g="1"]{--gc:#17794d;--gt:#e2f5ea}
+[data-g="2"]{--gc:#6a3fc7;--gt:#eee7fc}
+[data-g="3"]{--gc:#0b6a8a;--gt:#e1f3f8}
+@media (prefers-color-scheme:dark){
+:root{--bg:#10151f;--sf:#182030;--tx:#e8edf6;--mu:#a3aec2;--ln:#2b374c;--ac:#7fb2f5;--hero:#16335f;--pn:#1d273a;--mk:#6e5a10;--mt:#fff0b0;--ok:#7ad4a2;--fl:#10151f;--bt:#0b1220}
+[data-g="0"]{--gc:#f5a05a;--gt:#2e2216}
+[data-g="1"]{--gc:#5cd09b;--gt:#15281f}
+[data-g="2"]{--gc:#b79cf5;--gt:#241e38}
+[data-g="3"]{--gc:#5cc6e0;--gt:#12292f}}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+.wrap{max-width:920px;margin:0 auto;padding:0 18px}
+main.wrap{padding-bottom:40px}
+h1,h2,h3,.no,footer b{font-family:'Baloo 2','Be Vietnam Pro',system-ui,sans-serif}
+.hero{background:var(--hero);color:#fff}
+.hero .wrap{padding-top:36px;padding-bottom:28px}
+h1{font-size:clamp(32px,6.5vw,48px);line-height:1.12;margin:0 0 10px;font-weight:800}
+.sub{margin:0 0 18px;max-width:60ch}
+.crayons{display:flex;height:8px}
+.crayons i{flex:1}
+.crayons i:nth-child(1){background:#e5484d}.crayons i:nth-child(2){background:#f5a524}.crayons i:nth-child(3){background:#ffd93d}.crayons i:nth-child(4){background:#30a46c}.crayons i:nth-child(5){background:#6a3fc7}
+.box{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:16px 20px;margin:24px 0 16px;box-shadow:var(--sh)}
+.box>b{display:block;font-family:'Baloo 2','Be Vietnam Pro',sans-serif;font-size:19px}
+.box ol{margin:6px 0 0;padding-left:20px}
+.top{display:flex;flex-wrap:wrap;gap:12px;align-items:end}
+.top .fl{flex:1 1 180px}
+mark{background:var(--mk);color:var(--mt);padding:1px 5px;border-radius:4px;font-weight:600}
+mark.f{background:var(--gt,var(--pn));color:var(--tx);outline:1px solid var(--gc,var(--ac))}
+.fl{display:block;font-size:13px;color:var(--mu);font-weight:600}
+input[type=text],input[type=search]{display:block;width:100%;font:inherit;font-size:15px;color:var(--tx);background:var(--fl);border:1px solid var(--ln);border-radius:10px;padding:8px 12px;min-height:44px;margin-top:3px}
+input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:12px}
+.tw{overflow-x:auto;border:1px solid var(--ln);border-radius:14px;background:var(--sf);margin-top:14px;box-shadow:var(--sh)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--ln)}
+th{font-size:13px;color:var(--mu);font-weight:600}
+tr:last-child td{border-bottom:0}
+td.n{width:52px;font-weight:700;color:var(--gc);font-size:18px}
+tr.g td{background:var(--gt);color:var(--gc)}
+.gd{font-weight:400;color:var(--mu);font-size:14px}
+td a{color:var(--tx);font-weight:600;text-decoration:none;border-bottom:2px solid var(--gc)}
+h2{font-size:25px;line-height:1.25;margin:42px 0 2px;color:var(--gc);scroll-margin-top:12px}
+.gs{color:var(--mu);margin:0 0 8px}
+.card{display:grid;grid-template-columns:52px 1fr;gap:0 14px;background:var(--sf);border:1px solid var(--ln);border-top:5px solid var(--gc);border-radius:14px;padding:20px;margin:16px 0;box-shadow:var(--sh);scroll-margin-top:12px}
+.no{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--gc);color:var(--bt);font-size:22px;font-weight:700;line-height:1}
+h3{font-size:20px;margin:0 0 4px;line-height:1.3}
+.when{margin:0 0 12px;color:var(--mu)}
+.when b{color:var(--tx)}
+.pb{background:var(--pn);border-left:4px solid var(--gc);border-radius:0 10px 10px 0;padding:10px 14px 14px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px;font-weight:600;font-size:14px;color:var(--mu)}
+button{font:inherit;font-weight:600;font-size:15px;background:var(--ac);color:var(--bt);border:0;border-radius:10px;padding:9px 18px;min-height:44px;cursor:pointer;flex:none}
+.card button{background:var(--gc)}
+button.ok,.card button.ok{background:var(--ok)}
+button.ln{background:none;color:var(--mu);border:1px solid var(--ln);font-size:14px;padding:6px 12px;min-height:36px}
+pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;font-size:15px;line-height:1.7}
+.nt{margin:12px 0 0;padding:10px 14px;background:var(--gt);border-radius:10px;font-size:15px}
+.nt p{margin:0 0 6px}.nt p:last-child{margin:0}
+.up{display:inline-block;margin-top:12px;font-size:14px;color:var(--mu)}
+.none{color:var(--mu);padding:14px 2px}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px}
+.tabs button{flex:1 1 200px;min-height:52px;background:var(--sf);color:var(--gc);border:2px solid var(--ln);border-radius:12px;font-size:16px;font-weight:700;padding:8px 16px}
+.tabs button:hover{border-color:var(--gc);background:var(--gt)}
+.tabs button[aria-pressed="true"]{background:var(--gc);color:var(--bt);border-color:var(--gc)}
+tr.g{display:none}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:10px 0}
+.tile{background:var(--gt);border-radius:10px;padding:10px 14px;font-size:15px}
+.tile b{display:block;color:var(--gc)}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+.flow span{background:var(--gc);color:var(--bt);border-radius:999px;padding:6px 14px;font-weight:600;font-size:14px}
+.flow i{color:var(--mu);font-style:normal}
+#guide .box{margin-top:14px}
+#guide .box>b{margin-top:6px}
+.card h4{font-size:17px;margin:18px 0 4px;color:var(--gc);font-family:'Baloo 2','Be Vietnam Pro',sans-serif}
+.card>div>p{margin:6px 0}
+ol.st{margin:8px 0;padding-left:22px}
+ol.st li{margin:5px 0}
+.card .tw{margin:8px 0;box-shadow:none}
+.card table{min-width:460px}
+.card .pb{margin:10px 0}
+details{margin:8px 0}
+summary{cursor:pointer;font-weight:600;color:var(--gc);padding:6px 0}
+ul.ck{list-style:none;margin:8px 0;padding:0}
+ul.ck li{margin:8px 0}
+ul.ck input{width:18px;height:18px;vertical-align:-3px;accent-color:var(--gc)}
+p.end{margin-top:14px;font-weight:600}
+footer{background:var(--hero);color:#fff;margin-top:24px}
+footer .wrap{padding-top:22px;padding-bottom:26px;text-align:center}
+footer p{margin:2px 0}
+footer b{font-size:21px}
+footer a{color:#fff;font-weight:700}
+[hidden]{display:none!important}
+@media (max-width:560px){.card{grid-template-columns:1fr;gap:8px 0}.bar{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header class="hero" id="top">
+<div class="wrap">
+<h1>Bộ prompt cho giáo viên</h1>
+<p class="sub">14 prompt cho việc hằng ngày của giáo viên tiểu học: soạn bài, ra phiếu, viết nhận xét, xử lý công văn, tạo hình ảnh và video minh họa. Điền thông tin vào ô, sao chép, dán vào AI. Tab Hướng dẫn làm video chỉ từng bước biến tranh sách giáo khoa thành video.</p>
+</div>
+<div class="crayons" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+</header>
+<main class="wrap">
+<div class="box"><b>Cách dùng</b>
+<ol>
+<li>Điền <b style="display:inline">môn</b> và <b style="display:inline">lớp</b> ở khung bên dưới. Trang nhớ giúp bạn, các prompt đều dùng lại.</li>
+<li>Chọn một tab (Việc hằng ngày trên lớp, Xử lý tài liệu, Hình ảnh và video), chọn prompt rồi điền các ô còn lại. Nội dung bạn gõ hiện ngay trong khung prompt (chỗ chưa điền vẫn tô vàng).</li>
+<li>Bấm <b style="display:inline">Sao chép</b> rồi dán vào AI. Với tab Xử lý tài liệu, tải tài liệu vào NotebookLM trước.</li>
+</ol></div>
+<div class="box"><div class="top" id="topf"><button type="button" class="ln" id="rs">Xóa thông tin đã nhập</button></div></div>
+<nav class="tabs" id="tabs" aria-label="Chọn nhóm prompt"><button type="button" data-g="0" aria-pressed="true">Việc hằng ngày trên lớp</button><button type="button" data-g="1" aria-pressed="false">Xử lý tài liệu</button><button type="button" data-g="2" aria-pressed="false">Hình ảnh và video</button><button type="button" data-g="3" aria-pressed="false">HD làm video từ tranh SGK</button></nav>
+<label class="fl" for="q">Tìm prompt<input type="search" id="q" placeholder="Tìm trong cả 3 tab, ví dụ: nhận xét, kế hoạch"></label>
+<div class="tw" id="tw"><table><thead><tr><th>STT</th><th>Tên</th><th>Dùng khi nào</th></tr></thead><tbody id="tb"></tbody></table></div>
+<p class="none" id="no" hidden>Không có prompt nào khớp. Thử từ khóa ngắn hơn.</p>
+<section id="guide" data-g="3" hidden></section>
+<div id="cards"></div>
+</main>
+<footer>
+<div class="crayons" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+<div class="wrap">
+<p><b>Phát triển bởi Thầy Hợi</b></p>
+<p>Trường Tiểu học Bảo Đài số 2 - TP Bắc Ninh</p>
+<p><a href="tel:0967834824">0967 834 824</a></p>
+</div>
+</footer>
+<script>
+const D=[
+{g:"Nhóm A: Việc hằng ngày trên lớp",d:"Dùng với Claude, ChatGPT, Gemini… Không cần tải tài liệu.",it:[
+{n:1,t:"Soạn kế hoạch bài dạy",w:"Cần bản nháp kế hoạch bài dạy cho một bài cụ thể, rồi chỉnh lại theo lớp mình.",
+p:`Bạn là giáo viên tiểu học giàu kinh nghiệm, am hiểu Chương trình giáo dục phổ thông 2018. Hãy soạn kế hoạch bài dạy môn [MÔN] lớp [LỚP], bài [TÊN BÀI], thời lượng [SỐ TIẾT] tiết.
+Cấu trúc: 1) Yêu cầu cần đạt (phẩm chất, năng lực chung, năng lực đặc thù). 2) Đồ dùng dạy học của giáo viên và học sinh. 3) Các hoạt động dạy học: Khởi động, Khám phá, Luyện tập – Thực hành, Vận dụng. Mỗi hoạt động ghi rõ mục tiêu, nội dung, sản phẩm của học sinh, cách tổ chức (giáo viên làm gì, học sinh làm gì) và thời gian.
+Lời lẽ ngắn gọn, đúng với học sinh lớp [LỚP], dùng được ngay trên lớp.
+Điều kiện lớp học của tôi: [ĐIỀU KIỆN LỚP HỌC]`,
+nt:[["Ví dụ điền","“lớp 40 em, có máy chiếu, không có internet”."],["Mẹo","Trường có mẫu riêng thì dán mẫu vào cuối prompt và dặn AI “trình bày đúng theo mẫu này”."]]},
+{n:2,t:"Gợi ý hoạt động khởi động",w:"Cần mở đầu tiết học vui, nhanh, cả lớp cùng tham gia.",
+p:`Gợi ý 5 hoạt động khởi động (3–5 phút) cho bài [TÊN BÀI], môn [MÔN], lớp [LỚP]. Mỗi hoạt động gồm: tên, cách chơi hoặc cách làm, vật dụng cần chuẩn bị, câu dẫn vào bài. Ưu tiên hoạt động vui, cả lớp cùng tham gia, ít tốn kém, không cần thiết bị hiện đại.`},
+{n:3,t:"Soạn phiếu bài tập, câu hỏi ôn tập",w:"Cần phiếu ôn tập hoặc kiểm tra ngắn, có đáp án, in ra là dùng.",
+p:`Soạn [SỐ CÂU] câu hỏi ôn tập môn [MÔN] lớp [LỚP] về nội dung [NỘI DUNG]. Chia theo ba mức: nhận biết, kết nối, vận dụng. Câu hỏi ngắn, đúng lứa tuổi, có đáp án và gợi ý chấm ở cuối. Trình bày dạng phiếu in được, có chỗ cho học sinh ghi tên và ngày.`},
+{n:4,t:"Ý tưởng bài thực hành có sản phẩm",w:"Cần ý tưởng bài thực hành cho một chủ đề, dùng vật liệu rẻ hoặc sẵn có.",
+p:`Gợi ý 3 ý tưởng bài thực hành có sản phẩm cho chủ đề [CHỦ ĐỀ], môn [MÔN], lớp [LỚP]. Vật liệu chỉ dùng loại sẵn có hoặc rẻ: [VẬT LIỆU]. Mỗi ý tưởng gồm: tên sản phẩm, các bước làm ngắn gọn (học sinh làm được trong [SỐ PHÚT] phút), câu hỏi gợi mở khi trưng bày và nhận xét, cách mở rộng cho em làm nhanh. Nếu phù hợp, lồng ghép một giá trị sống (ví dụ: biết ơn, trung thực, chia sẻ).`,
+nt:[["Lưu ý","Ô môn học đổi được, dùng cho thủ công, âm nhạc, hoạt động trải nghiệm… đều được."]]},
+{n:5,t:"Viết lời nhận xét học sinh",w:"Cuối kỳ, cuối năm cần lời nhận xét cụ thể, ấm áp, không lặp lại giữa các em.",
+p:`Viết lời nhận xét cuối [KỲ/NĂM] cho một học sinh lớp [LỚP], môn [MÔN]. Thông tin về em: điểm mạnh [ĐIỂM MẠNH]; điều cần cố gắng [CẦN CỐ GẮNG]. Viết 2–3 câu, giọng ấm áp, cụ thể, mở đầu bằng điều em làm tốt, nêu hướng cố gắng bằng lời tích cực, không so sánh với bạn khác. Cho 3 cách diễn đạt khác nhau để tôi chọn.`,
+nt:[["Lưu ý","Không nhập họ tên đầy đủ hay thông tin định danh của học sinh. Chỉ ghi “em” hoặc chữ cái đầu. Đọc và sửa lại cho đúng từng em trước khi ghi vào học bạ."]]},
+{n:6,t:"Soạn thông báo gửi phụ huynh",w:"Cần thông báo ngắn, lịch sự, nêu rõ phụ huynh phải làm gì và hạn chót.",
+p:`Soạn thông báo gửi phụ huynh lớp [LỚP] về việc [NỘI DUNG THÔNG BÁO]. Thời gian: [THỜI GIAN]. Giọng lịch sự, thân thiện, nêu rõ phụ huynh cần làm gì và hạn chót. Viết hai bản: một bản đầy đủ (dưới 150 chữ) để đăng nhóm lớp, một bản rất ngắn để nhắn tin.`}
+]},
+{g:"Nhóm B: Xử lý tài liệu bằng NotebookLM",d:"Tải tài liệu vào sổ tay NotebookLM trước rồi mới dán prompt. Dùng AI khác thì đính kèm tài liệu cùng lúc.",it:[
+{n:7,t:"Công văn thành danh sách việc cần làm",w:"Nhận công văn, kế hoạch dài, cần rút ra đúng việc của giáo viên.",
+p:`Đọc tài liệu và chuyển toàn bộ nhiệm vụ thành danh sách kiểm tra dùng được ngay. Tách riêng việc của giáo viên trực tiếp giảng dạy với việc của tổ chuyên môn và nhà trường. Chia theo giai đoạn, ghi hạn hoàn thành nếu có, đặt ô [ ] trước mỗi việc. Bỏ qua phần lý thuyết nếu nó không dẫn tới hành động cụ thể. Với mỗi việc, ghi kèm số trích dẫn để tôi tra lại nguồn.`,
+nt:[["Lưu ý","Ô [ ] là ô tích kiểm, giữ nguyên, đừng thay."]]},
+{n:8,t:"Chương trình, sách giáo viên thành kế hoạch dạy học",w:"Cần phân phối nội dung dạy học theo tuần cho cả học kỳ hoặc cả năm.",
+p:`Dựa trên tài liệu, lập kế hoạch dạy học môn [MÔN] lớp [LỚP] trong [SỐ TUẦN] tuần. Trình bày dạng bảng: tuần, tên bài hoặc chủ đề, số tiết, yêu cầu cần đạt, đồ dùng cần chuẩn bị, ghi chú. Chỉ dùng nội dung có trong nguồn. Chỗ nào tài liệu không đủ căn cứ, hãy nói rõ thiếu thông tin gì.`,
+nt:[["Tải vào sổ tay","Chương trình môn học, sách giáo viên, khung kế hoạch giáo dục của trường."]]},
+{n:9,t:"Tài liệu tập huấn thành nội dung báo cáo tổ",w:"Vừa đi tập huấn về, cần báo cáo lại cho tổ chuyên môn và biết áp dụng ngay.",
+p:`Từ tài liệu tập huấn, soạn nội dung để tôi báo cáo lại với tổ chuyên môn trong [SỐ PHÚT] phút, gồm: 5 ý chính cần nhớ; những điểm khác so với cách làm hiện nay; 3 việc giáo viên áp dụng được ngay ở lớp, kèm ví dụ cho môn [MÔN]; những câu hỏi cần xin ý kiến thêm. Ghi kèm số trích dẫn.`},
+{n:10,t:"Bảng tiêu chí đánh giá sản phẩm của học sinh",w:"Cần bảng tiêu chí để nhận xét sản phẩm hoặc hoạt động, dán thẳng vào Word.",
+p:`Dựa trên tài liệu, xây dựng bảng tiêu chí đánh giá [SẢN PHẨM/HOẠT ĐỘNG] của học sinh lớp [LỚP], môn [MÔN]. Gồm 4–5 tiêu chí, mỗi tiêu chí có 3 mức (Hoàn thành tốt, Hoàn thành, Cần cố gắng) mô tả bằng ngôn ngữ học sinh hiểu được, kèm một ô nhận xét. Viết dạng bảng để tôi dán thẳng vào Word, kèm 2–3 dòng hướng dẫn cách dùng.`}
+]},
+{g:"Nhóm C: Tạo hình ảnh và video minh họa",d:"Dùng với công cụ tạo ảnh, video (Gemini, Google Flow, ChatGPT…). Nên tạo thử một ảnh hoặc một cảnh trước, ưng rồi mới làm cả bộ.",it:[
+{n:11,t:"Tranh minh họa cho bài học",w:"Cần một tranh để chiếu hoặc in, minh họa một cảnh hay một khái niệm trong bài.",
+p:`Vẽ một tranh minh họa cho bài [TÊN BÀI], môn [MÔN], lớp [LỚP]. Nội dung tranh: [CẢNH CẦN VẼ]. Phong cách: [PHONG CÁCH]. Màu sắc tươi sáng, nét rõ, bố cục đơn giản, nhân vật thân thiện với học sinh tiểu học. Nền sạch, không có chữ trong ảnh, không có logo hay thương hiệu. Tỉ lệ khung hình [TỈ LỆ].`,
+nt:[["Ví dụ điền","phong cách “tranh màu nước, nét hoạt hình dễ thương”; tỉ lệ “16:9” để chiếu hoặc “4:3” để in."],["Lưu ý","AI hay viết sai dấu tiếng Việt trong ảnh, vì vậy prompt yêu cầu không có chữ. Thêm chữ sau bằng PowerPoint hoặc Canva. Không tải ảnh thật của học sinh lên công cụ AI."]]},
+{n:12,t:"Bảng nhân vật để vẽ giống nhau nhiều lần",w:"Muốn một nhân vật xuất hiện giống hệt nhau qua nhiều tranh, nhiều cảnh.",
+p:`Tạo bảng nhân vật cho [TÊN NHÂN VẬT]: [MÔ TẢ NHÂN VẬT]. Vẽ nhân vật ở 4 góc nhìn (chính diện, nghiêng, sau lưng, toàn thân) và 4 biểu cảm (vui, ngạc nhiên, buồn, tự hào) trên nền trắng. Phong cách [PHONG CÁCH], dành cho học sinh tiểu học. Sau đó viết một đoạn mô tả ngoại hình ngắn, cố định (màu tóc, trang phục, màu chủ đạo, đặc điểm riêng) để tôi dán vào mọi prompt sau, giúp nhân vật luôn giống nhau.`,
+nt:[["Cách dùng tiếp","Lưu đoạn mô tả ngoại hình mà AI viết, rồi dán vào đầu mọi prompt vẽ cảnh sau đó. Nếu công cụ cho đính kèm ảnh, đính kèm luôn bảng nhân vật."]]},
+{n:13,t:"Câu chuyện, bài đọc thành kịch bản phân cảnh",w:"Muốn làm video hoặc bộ tranh từ một câu chuyện, cần chia cảnh và có sẵn prompt cho từng cảnh.",
+p:`Đọc nội dung sau: [NỘI DUNG CÂU CHUYỆN]. Chia thành [SỐ CẢNH] cảnh. Với mỗi cảnh viết: số cảnh, bối cảnh, nhân vật xuất hiện, hành động chính, lời dẫn hoặc lời thoại (1–2 câu tiếng Việt), và một prompt tạo ảnh bằng tiếng Anh (50–70 từ) theo phong cách [PHONG CÁCH]. Giữ mô tả ngoại hình nhân vật giống hệt nhau ở mọi cảnh. Không thêm tình tiết ngoài nội dung gốc.`,
+nt:[["Lưu ý","Công cụ tạo video thường chỉ làm được clip vài giây, vì vậy nên chia cảnh nhỏ. Prompt tạo ảnh bằng tiếng Anh thường cho kết quả ổn định hơn, còn lời dẫn vẫn giữ tiếng Việt."]]},
+{n:14,t:"Video ngắn minh họa một cảnh",w:"Cần một clip ngắn để mở bài, tạo hứng thú hoặc minh họa một hiện tượng, một câu chuyện nhỏ.",
+p:`Tạo video ngắn [SỐ GIÂY] giây minh họa [NỘI DUNG CẢNH] cho học sinh lớp [LỚP]. Phong cách [PHONG CÁCH]. Chuyển động camera: [CAMERA]. Nhân vật: [MÔ TẢ NHÂN VẬT]. Âm thanh: nhạc nền nhẹ nhàng, không lời thoại. Không có chữ trên hình, không có nội dung bạo lực hay đáng sợ, phù hợp trẻ 6–11 tuổi.`,
+nt:[["Ví dụ điền","camera “từ từ đưa gần vào nhân vật”; một cảnh chỉ nên có một hành động chính."]]}
+]}
+];
+const KEY='gv-prompt-v1',$=s=>document.querySelector(s);
+let V={};try{V=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+if(!('MÔN' in V))V['MÔN']='Mĩ thuật';
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(V))}catch(e){}};
+const mk=(tag,cls,txt)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e};
+const RE=/\[(?!\s\])([^\]\n]+)\]/g;
+const keys=t=>[...new Set([...t.matchAll(RE)].map(m=>m[1]))];
+const filled=t=>t.replace(RE,(m,k)=>V[k]||m);
+const R=[],I={};
+function draw(pre,t){pre.textContent='';let i=0;for(const m of t.matchAll(RE)){if(m.index>i)pre.append(t.slice(i,m.index));const v=V[m[1]];pre.append(mk('mark',v?'f':null,v||m[0]));i=m.index+m[0].length}if(i<t.length)pre.append(t.slice(i))}
+function field(k){const l=mk('label','fl'),i=mk('input');i.type='text';i.value=V[k]||'';i.placeholder=k;
+i.oninput=()=>{V[k]=i.value;save();(I[k]||[]).forEach(o=>{if(o!==i)o.value=i.value});R.forEach(r=>draw(r.pre,r.t))};
+(I[k]=I[k]||[]).push(i);l.append(k,i);return l}
+async function copy(t,b){let ok=false;
+try{await navigator.clipboard.writeText(t);ok=true}catch(e){}
+if(!ok){try{const a=mk('textarea');a.value=t;a.style.cssText='position:fixed;top:0;opacity:0';document.body.appendChild(a);a.select();ok=document.execCommand('copy');a.remove()}catch(e){}}
+b.textContent=ok?'Đã sao chép ✓':'Chưa chép được, hãy bôi đen';b.classList.toggle('ok',ok);
+setTimeout(()=>{b.textContent='Sao chép';b.classList.remove('ok')},2400)}
+const go=(a,sel)=>{a.onclick=e=>{e.preventDefault();$(sel).scrollIntoView()}};
+['MÔN','LỚP'].forEach(k=>$('#topf').prepend(field(k)));
+const groups=[];
+D.forEach((G,gi)=>{
+const gr=mk('tr','g'),gt=mk('td');gt.colSpan=3;gr.dataset.g=gi;gt.append(mk('b',null,G.g),mk('div','gd',G.d));gr.append(gt);$('#tb').append(gr);
+const h=mk('h2',null,G.g),gs=mk('p','gs',G.d);h.dataset.g=gi;$('#cards').append(h,gs);
+const grp={els:[gr,h,gs],items:[]};groups.push(grp);
+G.it.forEach(x=>{
+const id='#p'+x.n,tr=mk('tr'),tt=mk('td'),a=mk('a',null,x.t);tr.dataset.g=gi;a.href=id;go(a,id);tt.append(a);
+tr.append(mk('td','n',x.n),tt,mk('td',null,x.w));$('#tb').append(tr);
+const s=mk('section','card');s.id='p'+x.n;s.dataset.g=gi;
+const b=mk('div'),w=mk('p','when');w.append(mk('b',null,'Dùng khi: '),x.w);
+const ks=keys(x.p),pb=mk('div','pb'),bar=mk('div','bar'),btn=mk('button',null,'Sao chép');btn.type='button';btn.setAttribute('aria-live','polite');btn.onclick=()=>copy(filled(x.p),btn);
+bar.append(mk('span',null,ks.length?'Prompt: điền các ô phía trên':'Prompt: dán là dùng được'),btn);
+const pre=mk('pre');R.push({pre,t:x.p});draw(pre,x.p);pb.append(bar,pre);
+b.append(mk('h3',null,x.t),w);
+if(ks.length){const f=mk('div','fields');ks.forEach(k=>f.append(field(k)));b.append(f)}
+b.append(pb);
+if(x.nt){const n=mk('div','nt');x.nt.forEach(([l,v])=>{const p=mk('p');p.append(mk('b',null,l+': '),v);n.append(p)});b.append(n)}
+const up=mk('a','up','Về đầu trang');up.href='#top';go(up,'#top');b.append(up);
+s.append(mk('div','no',x.n),b);$('#cards').append(s);
+grp.items.push({tr,s,txt:(x.t+' '+x.w+' '+x.p).toLowerCase()})})});
+
+const GP={"p1": "Bạn là chuyên gia thiết kế ảnh giáo dục. Hãy phân tích kỹ bức ảnh sách giáo khoa tôi vừa tải lên và chuyển thành một hình ảnh hoạt hình 3D chất lượng cao, đẹp, sắc nét, sinh động, phù hợp với học sinh.\nYÊU CẦU:\n- Giữ nguyên số lượng nhân vật, vị trí tương đối, trang phục, đặc điểm nhận dạng, đạo cụ và bối cảnh chính theo ảnh gốc.\n- Chuyển tất cả nhân vật thành phong cách hoạt hình 3D dễ thương, tự nhiên, biểu cảm rõ nét.\n- Xóa toàn bộ bong bóng hội thoại.\n- Giữ nguyên những vật dụng cần thiết cho tình huống, chẳng hạn bảng, tờ giấy, đồ vật nhân vật cầm trên tay.\n- Bố cục ngang 16:9, chất lượng Full HD, ánh sáng đẹp, màu sắc tươi sáng, đường nét rõ ràng.\n- Không tự ý thêm nhân vật, thay đổi nội dung tình huống hoặc tạo chi tiết không có trong hình gốc.\n- Ưu tiên bố cục dễ chuyển thành video, các nhân vật nhìn rõ khuôn mặt và có không gian để chuyển động.\nHãy tạo trực tiếp hình ảnh hoàn chỉnh.", "p2": "Bạn là chuyên gia sản xuất video hoạt hình 3D giáo dục.\nDựa trên bức ảnh SGK gốc tôi đã tải lên và hình ảnh hoạt hình 3D vừa tạo, hãy xây dựng kịch bản chuyển bức tranh thành video có lời thoại.\nYÊU CẦU BẮT BUỘC:\n\n1. Phân tích nhân vật\n- Xác định có bao nhiêu nhân vật.\n- Mô tả rõ ngoại hình, trang phục, vị trí từng nhân vật.\n- Xác định chính xác lời thoại thuộc về nhân vật nào bằng cách quan sát bong bóng lời thoại và hướng chỉ của bong bóng trong ảnh gốc.\n- Những nhân vật không có lời thoại chỉ biểu cảm hoặc thực hiện động tác phù hợp, tuyệt đối không tự ý cho nói.\n\n2. Giữ nguyên lời thoại\n- Trích xuất chính xác, đầy đủ từng câu thoại có trong ảnh SGK.\n- Không tự ý thêm, bớt hoặc sửa lời thoại.\n- Không tự sáng tác lời dẫn chuyện.\n- Không thay đổi tên nhân vật hoặc nội dung bài học.\n\n3. Phân chia cảnh\n- Mỗi video có thời lượng mục tiêu 10 giây.\n- Nếu tổng lời thoại của tình huống dài quá 10s, hãy chủ động chia thành nhiều cảnh để nhân vật nói rõ ràng, tự nhiên, không bị cắt lời.\n- Mỗi cảnh chia ra làm các phân cảnh. Mỗi phân cảnh chỉ có một nhân vật nói để tránh nhầm lẫn giọng.\n- Các cảnh phải nối tiếp logic, giữ nguyên nhân vật, trang phục và bối cảnh.\n\n4. Viết prompt tạo video:\nMỗi prompt phải ghi rõ:\n- Nhân vật đang nói và vị trí trong khung hình.\n- Lời thoại chính xác đặt trong dấu ngoặc kép.\n- Nhân vật nào không nói.\n- Cử chỉ, nét mặt và hành động phù hợp.\n- Giọng nói tiếng Việt phổ thông, tự nhiên, rõ ràng.\n- Góc máy, chuyển động máy quay.\n- Yêu cầu giữ nguyên hình ảnh 3D tham chiếu.\n- Không hiện chữ, phụ đề hoặc bong bóng hội thoại.\n- Khung hình 16:9, chất lượng cao.\n\n5. Quy tắc chống nhầm lời thoại\n- Chỉ nhân vật được phân công mới phát ra lời nói.\n- Nhân vật còn lại không mấp máy miệng như đang nói.\n- Không đổi giọng giữa các nhân vật.\n- Không để nhân vật nói đè lên nhau.\n- Nếu rô-bốt nói thì phải thể hiện rõ tiếng nói phát ra từ rô-bốt, không phải học sinh.\n\n6. Kết quả đầu ra\nHãy trình bày bảng phân cảnh gồm: số cảnh, nhân vật nói, lời thoại, hành động, thời lượng.\nSau đó viết riêng từng prompt đầy đủ, sẵn sàng sao chép sang Google Flow hoặc công cụ tạo video AI.\nHãy tự kiểm tra lại toàn bộ lời thoại với ảnh SGK gốc trước khi hoàn thành.", "s1": "Tạo video hoạt hình 3D giáo dục, thời lượng 10 giây, tỷ lệ 16:9, dựa trên ảnh 3D tham chiếu.\nGiữ nguyên ba nhân vật và bối cảnh.\nNam là học sinh nam đứng bên trái, mặc áo trắng và quần xanh.\nNam quay nhẹ về phía rô-bốt, đưa tay chỉ và nói chính xác bằng tiếng Việt: “Rô-bốt viết số gì vậy?”\nChỉ Nam nói, giọng bé trai tự nhiên, rõ ràng, thể hiện sự tò mò.\nMai đứng giữa, mỉm cười và cầm tờ giấy, không nói.\nRô-bốt đứng bên phải, hướng ánh mắt về Nam, không nói.\nSau lời thoại, Nam chờ câu trả lời với vẻ mặt háo hức.\nChuyển động nhẹ nhàng, không đổi trang phục hoặc vị trí nhân vật. Không thêm lời thoại, chữ hay phụ đề.", "s2": "Giữ nguyên bối cảnh giống cảnh trước. Tiếp tục:\nRô-bốt đứng bên phải là nhân vật DUY NHẤT phát ra lời nói.\nRô-bốt hướng khuôn mặt điện tử về phía Nam, mắt chuyển động vui vẻ và nói chính xác: “Đố Nam đấy!”\nGiọng rô-bốt tiếng Việt phổ thông, vui tươi, thân thiện, rõ ràng, có chút âm sắc điện tử nhẹ.\nNam đứng bên trái lắng nghe, không nói.\nMai đứng giữa, cầm tờ giấy, mỉm cười, không nói.\nRô-bốt cử động đầu và tay nhẹ nhàng. Không thay đổi hình dạng nhân vật. Không tạo chữ hoặc phụ đề.", "s3": "Giữ nguyên bối cảnh giống cảnh trước. Tiếp tục:\nRô-bốt bên phải tiếp tục nói, là nhân vật DUY NHẤT có lời thoại.\nLời thoại chính xác của rô-bốt: “Tớ gợi ý là trung bình cộng của hai số do tớ và Mai viết bằng 15.”\nGiọng nói giống hệt phân cảnh 2, rõ ràng, tốc độ vừa phải, không cắt mất từ cuối.\nTrong khi nói, rô-bốt lần lượt hướng mắt về Mai và tờ giấy mình đang cầm.\nMai giơ nhẹ tờ giấy lên, mỉm cười, tuyệt đối không nói.\nNam nhìn rô-bốt với vẻ suy nghĩ, tuyệt đối không nói.\nMáy quay ổn định, chuyển động tinh tế, ánh sáng tươi sáng. Không thêm chữ, không thêm lời thoại, không tự ý thay đổi bối cảnh.", "h2": "Tạo video hoạt hình 3D giáo dục, thời lượng 10 giây, tỷ lệ 16:9, dựa trên ảnh 3D tham chiếu.\nGiữ nguyên ba nhân vật và bối cảnh.\nNam là học sinh nam đứng bên trái, mặc áo trắng và quần xanh.\nNam quay nhẹ về phía rô-bốt, đưa tay chỉ và nói chính xác bằng tiếng Việt: “Các bạn nhỏ của lớp mình ơi, hãy giúp tớ tìm ra số mà rô bốt đang cầm trên tay với nhé”\nChỉ Nam nói, giọng bé trai tự nhiên, rõ ràng, thể hiện sự tò mò.\nMai đứng giữa, mỉm cười và cầm tờ giấy, không nói.\nRô-bốt đứng bên phải, hướng ánh mắt về Nam, không nói.\nSau lời thoại, Nam chờ câu trả lời với vẻ mặt háo hức.\nChuyển động nhẹ nhàng, không đổi trang phục hoặc vị trí nhân vật. Không thêm lời thoại, chữ hay phụ đề.", "tip": "Chỉ nhân vật [tên nhân vật] được nói. Tất cả nhân vật khác hoàn toàn im lặng.", "chot": "Tạo ảnh cả 3 nhân vật cùng hướng mắt về trước nhìn khán giả."};
+const el=(t,c,h)=>{const e=mk(t,c);if(h!=null)e.innerHTML=h;return e};
+function pbox(label,text){const pb=mk('div','pb'),bar=mk('div','bar'),b=mk('button',null,'Sao chép');b.type='button';b.onclick=()=>copy(filled(text),b);bar.append(mk('span',null,label),b);const pre=mk('pre');draw(pre,text);pb.append(bar,pre);return pb}
+function tbl(h,rows){return `<div class="tw"><table><thead><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`}
+function parts(b,ps){ps.forEach(p=>{
+if(p.h)b.append(el('h4',null,p.h));
+if(p.t)b.append(el('p',null,p.t));
+if(p.l){const o=mk('ol','st');o.start=p.s||1;p.l.forEach(x=>o.append(el('li',null,x)));b.append(o)}
+if(p.p)b.append(pbox(p.pl,GP[p.p]));
+if(p.x)b.append(el('div','tw',p.x));
+if(p.n){const n=mk('div','nt');n.append(el('p',null,`<b>${p.n[0]}:</b> ${p.n[1]}`));b.append(n)}})}
+function gcard(n,t,ps){const c=mk('section','card'),b=mk('div');b.append(el('h3',null,t));parts(b,ps);c.append(mk('div','no',n),b);return c}
+const gd=$('#guide');
+gd.append(el('h2',null,'Hướng dẫn làm video từ tranh sách giáo khoa'),
+el('p','gs','Biến một tình huống trong sách giáo khoa thành video hoạt hình 3D: nhân vật chuyển động và nói đúng lời thoại trong tranh. Làm lần lượt 4 bước, không cần biết lập trình hay thiết kế.'));
+const ib=el('div','box',`<b>Bạn cần chuẩn bị</b><div class="tools"><div class="tile"><b>Điện thoại</b>Chụp ảnh tình huống trong sách, hoặc chụp màn hình trang sách online.</div><div class="tile"><b>ChatGPT</b>Đổi tranh thành hoạt hình 3D, phân tích lời thoại, viết câu lệnh tạo video.</div><div class="tile"><b>Google Flow</b>Hoặc công cụ AI khác biến ảnh thành video. Tạo chuyển động và lời thoại.</div><div class="tile"><b>CapCut</b>Ghép cảnh, chèn chữ, số liệu, âm thanh và xuất video.</div></div><p class="mu">Công cụ có thể đổi giao diện hoặc giới hạn số lượt dùng theo thời gian. Nếu không thấy nút nào đó, hãy tìm mục có ý nghĩa tương tự.</p><b>Quy trình 4 bước</b><div class="flow"><span>1. Chụp ảnh SGK</span><i>→</i><span>2. Ảnh 3D</span><i>→</i><span>3. Kịch bản và video AI</span><i>→</i><span>4. Hoàn thiện ở CapCut</span></div>`);
+gd.append(ib);
+gd.append(gcard(1,'Chụp ảnh tình huống trong sách giáo khoa',[
+{t:'Chọn tình huống có nhân vật nói chuyện hoặc cùng làm một việc, để video có chuyện để kể. Ví dụ: đoạn hội thoại giữa các nhân vật, tình huống đặt vấn đề trong bài toán, tranh minh họa câu chuyện hoặc bài học, tình huống thực tế có nhân vật tương tác.'},
+{h:'Cách làm',l:['Mở trang sách có tình huống muốn chuyển thành video.','Dùng điện thoại chụp rõ cả hình vẽ và lời thoại. Nếu dùng sách online, chụp màn hình trang đó.','Giữ điện thoại thẳng, đủ sáng. Ảnh không được mờ, nghiêng hoặc mất chữ.','Xem lại ảnh: đọc được hết chữ trong bong bóng chưa? Thấy đủ nhân vật chưa? Chưa thì chụp lại.','Lưu ảnh vào điện thoại hoặc máy tính. Chụp bằng điện thoại thì gửi sang máy tính (Zalo, email, cáp) cho dễ tải lên các công cụ.']},
+{n:['Lưu ý','Chụp đầy đủ lời thoại, dữ kiện và nội dung liên quan để AI không hiểu sai tình huống.']}]));
+gd.append(gcard(2,'Dùng ChatGPT chuyển tranh thành ảnh hoạt hình 3D',[
+{t:'Đưa ảnh vừa chụp cho ChatGPT và nhờ vẽ lại thành ảnh hoạt hình 3D, bỏ bong bóng hội thoại.'},
+{h:'Cách làm',l:['Mở ChatGPT, bắt đầu một cuộc trò chuyện mới.','Tải ảnh SGK vào ô trò chuyện (bấm biểu tượng đính kèm hoặc kéo thả ảnh vào).','Bấm Sao chép ở Câu lệnh mẫu 1 bên dưới, dán vào ô trò chuyện rồi gửi.']},
+{p:'p1',pl:'Câu lệnh mẫu 1: chuyển ảnh SGK thành ảnh 3D'},
+{l:['Chờ ChatGPT tạo ảnh. Kết quả mong muốn: hình 3D có đủ nhân vật giống tranh SGK, không còn bong bóng hội thoại, màu sắc và ánh sáng đẹp hơn.','So sánh với ảnh gốc: đủ số nhân vật, đúng vị trí, trang phục, đồ vật cầm trên tay, đúng các con số. Chưa đúng thì nhắn ChatGPT sửa đúng chỗ sai, ví dụ: “Giữ nguyên bức ảnh này, chỉ sửa … cho giống ảnh gốc.”','Lưu ảnh 3D về máy. Bước 3 sẽ dùng ảnh này.'],s:4},
+{n:['Lưu ý quan trọng','Số liệu, ký hiệu, công thức phải kiểm tra theo ảnh gốc. Để tránh AI vẽ sai con số, nên chèn lại các dữ kiện này bằng CapCut ở bước cuối.']},
+{h:'Muốn có cảnh chốt (nhân vật nhìn khán giả)?',t:'Nhắn tiếp trong cùng cuộc trò chuyện để tạo thêm một ảnh dùng cho video cảnh chốt:'},
+{p:'chot',pl:'Câu nhắn tạo ảnh cảnh chốt'}]));
+gd.append(gcard(3,'Nhờ ChatGPT viết kịch bản, rồi tạo video bằng AI',[
+{t:'Đây là bước đặc biệt quan trọng. Nếu mô tả không rõ, AI có thể cho nhân vật này nói lời của nhân vật khác, hoặc nhiều nhân vật nói cùng lúc. Vì vậy phải xác định chính xác: nhân vật nào nói, nói gì, nói theo thứ tự nào, nhân vật nào không được nói.'},
+{h:'3a. Viết kịch bản và prompt video',l:['Giữ nguyên cuộc trò chuyện ở Bước 2 để ChatGPT còn thấy cả ảnh SGK gốc và ảnh 3D vừa tạo.','Bấm Sao chép ở Câu lệnh mẫu 2, dán vào ô trò chuyện rồi gửi.']},
+{p:'p2',pl:'Câu lệnh mẫu 2: viết kịch bản và prompt tạo video'},
+{l:['ChatGPT sẽ trả về bảng phân cảnh (số cảnh, nhân vật nói, lời thoại, hành động, thời lượng) và từng prompt đầy đủ cho mỗi cảnh.','Đối chiếu với SGK: lời thoại đúng từng chữ, đúng người nói. Sai thì nhắn ChatGPT sửa.'],s:3},
+{h:'3b. Đưa prompt vào công cụ tạo video',l:['Mở Google Flow hoặc công cụ AI biến ảnh thành video bạn đang dùng.','Tải ảnh 3D đã tạo ở Bước 2 lên.','Sao chép prompt của cảnh 1, dán vào và tạo video. Xem lại kết quả.','Tạo các cảnh tiếp theo bằng cùng ảnh 3D tham chiếu, mỗi cảnh dán prompt tương ứng.','Tải tất cả video về thiết bị.']},
+{n:['Về thời lượng','Đặt 10 giây nếu công cụ hỗ trợ. Nếu công cụ chỉ cho thời lượng khác, chỉnh trong CapCut, bảo đảm không cắt mất lời thoại. Mỗi prompt tạo một đoạn video riêng, ở Bước 4 bạn sẽ cắt và ghép lại.']},
+{h:'Mẹo quan trọng: AI cho sai người nói',t:'Đừng giữ video lỗi. Hãy bổ sung câu sau vào prompt (thay phần trong ngoặc vuông bằng tên nhân vật) rồi tạo lại:'},
+{p:'tip',pl:'Câu bổ sung khi sai người nói'}]));
+gd.append(gcard(4,'Dùng CapCut chỉnh sửa và hoàn thiện video',[
+{t:'Sau khi tải các đoạn video về, mở CapCut để làm hậu kỳ.'},
+{l:['Tạo dự án mới và nhập toàn bộ video.','Sắp xếp các cảnh theo đúng thứ tự kịch bản.','Cắt bỏ đoạn thừa, khoảng lặng hoặc lỗi không mong muốn.','Thêm các con số, ký hiệu toán học, câu hỏi hoặc phụ đề nếu cần.','Đặt chữ đúng vị trí tương ứng trong ảnh SGK. Với chữ trên đạo cụ đang chuyển động, dùng khung hình chính hoặc tính năng theo dõi để chữ di chuyển theo đạo cụ.','Thêm nhạc nền nhẹ nhàng, không át lời thoại.','Thêm tiêu đề bài học và hiệu ứng chuyển cảnh vừa phải.','Kiểm tra sự đồng bộ giữa âm thanh, nhân vật và nội dung.','Xuất video định dạng MP4, khung hình 16:9, ưu tiên Full HD 1080p.']},
+{n:['Đặc biệt','Nếu AI tạo lời thoại chưa chính xác, bạn có thể dùng giọng đọc do mình thu sẵn hoặc tính năng chuyển văn bản thành giọng nói trong CapCut để thay thế, rồi căn chỉnh chuyển động và âm thanh cho khớp.']}]));
+const ex=mk('section','card'),eb=mk('div');eb.append(el('h3',null,'Ví dụ trọn vẹn: bài toán trung bình cộng'));
+parts(eb,[
+{t:'Tranh SGK có hai học sinh và một rô-bốt trao đổi về bài toán trung bình cộng, kèm câu hỏi “Rô-bốt đã viết số nào?”. Dưới đây là cả quy trình áp dụng cho tranh này.'},
+{h:'1. Phân tích tranh gốc',x:tbl(['Nhân vật','Mô tả'],[['Nam','Học sinh nam đứng bên trái, áo trắng, quần xanh, chỉ tay về phía rô-bốt.'],['Mai','Học sinh nữ đứng giữa, áo trắng, váy hồng, cầm tờ giấy ghi số 18.'],['Rô-bốt','Đứng bên phải, thân màu xanh xám, khuôn mặt điện tử, cầm một tờ giấy chưa cho thấy số cần tìm.']])},
+{h:'2. Lời thoại chính xác trong tranh',t:'<b>Nam:</b> “Rô-bốt viết số gì vậy?”<br><b>Rô-bốt:</b> “Đố Nam đấy! Tớ gợi ý là trung bình cộng của hai số do tớ và Mai viết bằng 15.”<br><b>Mai:</b> không có lời thoại trong tranh gốc.'},
+{h:'3. Chia thành 3 phân cảnh (tổng khoảng 10 giây)',x:tbl(['Thứ tự','Nhân vật nói','Nội dung','Thời lượng'],[['1','Nam','“Rô-bốt viết số gì vậy?”','3 giây'],['2','Rô-bốt','“Đố Nam đấy!”','2 giây'],['3','Rô-bốt','“Tớ gợi ý là trung bình cộng của hai số do tớ và Mai viết bằng 15.”','5 giây']])},
+{h:'4. Prompt tạo video cho từng phân cảnh',t:'Mỗi phân cảnh chỉ một nhân vật nói, các nhân vật còn lại được ghi rõ là không nói.'}]);
+[['Phân cảnh 1: Nam đặt câu hỏi','s1'],['Phân cảnh 2: Rô-bốt trả lời','s2'],['Phân cảnh 3: Rô-bốt đưa ra gợi ý','s3'],['Cảnh chốt: Nam đặt câu hỏi cho cả lớp (dùng ảnh 3 nhân vật nhìn khán giả)','h2']].forEach(([l,k])=>{const dt=mk('details'),sm=mk('summary',null,l);dt.append(sm,pbox('Prompt',GP[k]));eb.append(dt)});
+parts(eb,[
+{h:'5. Hoàn thiện bằng CapCut',l:['Kiểm tra số rõ, không bị biến dạng.','Chèn phụ đề cho lời thoại của Nam và rô-bốt nếu cần.','Sau lời gợi ý, thêm dòng chữ: “Em hãy tìm số mà rô-bốt đã viết.”','Tạo khoảng dừng để học sinh suy nghĩ và trả lời.']},
+{n:['Đáp án dành cho giáo viên','Trung bình cộng của hai số bằng 15 nên tổng hai số là 15 × 2 = 30. Số rô-bốt đã viết là 30 − 18 = <b>12</b>. Có thể giữ bí mật đáp án cho học sinh tự giải, hoặc thêm một cảnh công bố đáp án sau khi học sinh làm xong.']}]);
+ex.append(mk('div','no','★'),eb);gd.append(ex);
+const fx=mk('section','card'),fb=mk('div');fb.append(el('h3',null,'Gặp lỗi thì xử lý thế nào?'));
+parts(fb,[{x:tbl(['Lỗi hay gặp','Cách xử lý'],[
+['Ảnh 3D thừa hoặc thiếu nhân vật','Nhắn ChatGPT giữ đúng số lượng, vị trí, trang phục như ảnh gốc, không thêm chi tiết mới.'],
+['Con số trong ảnh bị sai hoặc méo','Chèn lại số bằng CapCut ở bước cuối.'],
+['Sai nhân vật nói','Xóa video lỗi, thêm câu “Chỉ nhân vật [tên] được nói. Tất cả nhân vật khác hoàn toàn im lặng.” rồi tạo lại.'],
+['Nhiều nhân vật nói cùng lúc','Chia thành phân cảnh, mỗi phân cảnh chỉ một người nói, ghi rõ ai không nói.'],
+['Lời thoại bị cắt hoặc nuốt chữ','Chia cảnh ngắn hơn, lời thoại vừa đủ; chỉnh thời lượng trong CapCut. Cần thì thay bằng giọng đọc của mình.'],
+['Nhân vật đổi trang phục hoặc hình dạng giữa các cảnh','Dùng cùng một ảnh 3D tham chiếu cho mọi cảnh và nhắc “không đổi trang phục, vị trí nhân vật”.'],
+['Nhân vật cử động quá mạnh','Yêu cầu chuyển động nhẹ nhàng, ưu tiên cử chỉ và biểu cảm tự nhiên.']])}]);
+fx.append(mk('div','no','!'),fb);gd.append(fx);
+const ck=mk('section','card'),cb=mk('div');cb.append(el('h3',null,'Kiểm tra trước khi dùng trên lớp'));
+const ul=mk('ul','ck');
+['<b>Chính xác về kiến thức:</b> AI không tự ý đổi dữ kiện, số liệu, tên nhân vật, công thức.','<b>Chính xác về lời thoại:</b> mỗi câu thoại đúng nhân vật theo tranh. Nghe lại toàn bộ video.','<b>Đồng nhất nhân vật:</b> dùng cùng ảnh tham chiếu, mô tả ngoại hình và bối cảnh nhất quán.','<b>Không lạm dụng hiệu ứng:</b> tránh chuyển động mạnh làm học sinh mất tập trung.','<b>Kiểm soát thời lượng:</b> lời thoại dài phải chia cảnh, không nói quá nhanh, không bị cắt tiếng.','<b>Kiểm tra sản phẩm cuối:</b> đối chiếu video với SGK về hình ảnh, lời thoại, kiến thức, thời lượng.','<b>Học liệu và bản quyền:</b> hình ảnh SGK có bản quyền, chỉ dùng trong phạm vi được phép và tuân thủ quy định khi chia sẻ, đăng tải công khai.'].forEach(x=>{const li=mk('li'),lb=mk('label'),i=mk('input');i.type='checkbox';lb.append(i);lb.insertAdjacentHTML('beforeend',' '+x);li.append(lb);ul.append(li)});
+cb.append(ul,el('p','end','Từ một bức tranh tĩnh trong sách giáo khoa, giáo viên có thể tạo nên một tình huống học tập sinh động, gần gũi và hấp dẫn học sinh. Điều quan trọng không chỉ là làm cho hình ảnh chuyển động, mà còn phải giữ được tính chính xác của kiến thức và mục tiêu sư phạm của bài học.'));
+ck.append(mk('div','no','✓'),cb);gd.append(ck);
+let act=0;
+const tb=document.querySelectorAll('#tabs button');
+function show(){const q=$('#q').value.trim().toLowerCase();let any=false;
+groups.forEach((g,gi)=>{let n=0;g.items.forEach(i=>{const h=q?!i.txt.includes(q):gi!==act;i.tr.hidden=i.s.hidden=h;if(!h)n++});g.els.forEach(el=>el.hidden=!n);any=any||n>0});
+const gm=!q&&act===3;$('#no').hidden=any||gm;$('#tw').hidden=gm;$('#guide').hidden=!gm;
+tb.forEach(b=>b.setAttribute('aria-pressed',String(!q&&+b.dataset.g===act)))}
+tb.forEach(b=>b.onclick=()=>{act=+b.dataset.g;$('#q').value='';show();try{history.replaceState(null,'','#g'+act)}catch(e){}});
+$('#q').oninput=show;
+const hm=/^#g([0-3])$/.exec(location.hash);if(hm)act=+hm[1];show();
+$('#rs').onclick=()=>{V={'MÔN':'Mĩ thuật'};save();Object.keys(I).forEach(k=>I[k].forEach(i=>i.value=V[k]||''));R.forEach(r=>draw(r.pre,r.t))};
+</script>
+</body>
+</html>
