@@ -14,12 +14,14 @@
 [data-g="1"]{--gc:#17794d;--gt:#e2f5ea}
 [data-g="2"]{--gc:#6a3fc7;--gt:#eee7fc}
 [data-g="3"]{--gc:#0b6a8a;--gt:#e1f3f8}
+[data-g="4"]{--gc:#b0245f;--gt:#fde8f1}
 @media (prefers-color-scheme:dark){
 :root{--bg:#10151f;--sf:#182030;--tx:#e8edf6;--mu:#a3aec2;--ln:#2b374c;--ac:#7fb2f5;--hero:#16335f;--pn:#1d273a;--mk:#6e5a10;--mt:#fff0b0;--ok:#7ad4a2;--fl:#10151f;--bt:#0b1220}
 [data-g="0"]{--gc:#f5a05a;--gt:#2e2216}
 [data-g="1"]{--gc:#5cd09b;--gt:#15281f}
 [data-g="2"]{--gc:#b79cf5;--gt:#241e38}
-[data-g="3"]{--gc:#5cc6e0;--gt:#12292f}}
+[data-g="3"]{--gc:#5cc6e0;--gt:#12292f}
+[data-g="4"]{--gc:#f08ab4;--gt:#2e1822}}
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -111,7 +113,7 @@ footer a{color:#fff;font-weight:700}
 <header class="hero" id="top">
 <div class="wrap">
 <h1>Bộ prompt cho giáo viên</h1>
-<p class="sub">14 prompt cho việc hằng ngày của giáo viên tiểu học: soạn bài, ra phiếu, viết nhận xét, xử lý công văn, tạo hình ảnh và video minh họa. Điền thông tin vào ô, sao chép, dán vào AI. Tab Hướng dẫn làm video chỉ từng bước biến tranh sách giáo khoa thành video.</p>
+<p class="sub">14 prompt cho việc hằng ngày của giáo viên tiểu học: soạn bài, ra phiếu, viết nhận xét, xử lý công văn, tạo hình ảnh và video minh họa. Điền thông tin vào ô, sao chép, dán vào AI. Hai tab cuối hướng dẫn cách dùng bộ prompt và cách tạo video từ tranh sách giáo khoa.</p>
 </div>
 <div class="crayons" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
 </header>
@@ -123,11 +125,12 @@ footer a{color:#fff;font-weight:700}
 <li>Bấm <b style="display:inline">Sao chép</b> rồi dán vào AI. Với tab Xử lý tài liệu, tải tài liệu vào NotebookLM trước.</li>
 </ol></div>
 <div class="box"><div class="top" id="topf"><button type="button" class="ln" id="rs">Xóa thông tin đã nhập</button></div></div>
-<nav class="tabs" id="tabs" aria-label="Chọn nhóm prompt"><button type="button" data-g="0" aria-pressed="true">Việc hằng ngày trên lớp</button><button type="button" data-g="1" aria-pressed="false">Xử lý tài liệu</button><button type="button" data-g="2" aria-pressed="false">Hình ảnh và video</button><button type="button" data-g="3" aria-pressed="false">HD làm video từ tranh SGK</button></nav>
+<nav class="tabs" id="tabs" aria-label="Chọn nhóm prompt"><button type="button" data-g="0" aria-pressed="true">Việc hằng ngày trên lớp</button><button type="button" data-g="1" aria-pressed="false">Xử lý tài liệu</button><button type="button" data-g="2" aria-pressed="false">Hình ảnh và video</button><button type="button" data-g="3" aria-pressed="false">HD tạo video từ tranh SGK</button><button type="button" data-g="4" aria-pressed="false">Hướng dẫn sử dụng</button></nav>
 <label class="fl" for="q">Tìm prompt<input type="search" id="q" placeholder="Tìm trong cả 3 tab, ví dụ: nhận xét, kế hoạch"></label>
 <div class="tw" id="tw"><table><thead><tr><th>STT</th><th>Tên</th><th>Dùng khi nào</th></tr></thead><tbody id="tb"></tbody></table></div>
 <p class="none" id="no" hidden>Không có prompt nào khớp. Thử từ khóa ngắn hơn.</p>
 <section id="guide" data-g="3" hidden></section>
+<section id="guide2" data-g="4" hidden></section>
 <div id="cards"></div>
 </main>
 <footer>
@@ -168,7 +171,7 @@ nt:[["Lưu ý","Ô [ ] là ô tích kiểm, giữ nguyên, đừng thay."]]},
 p:`Dựa trên tài liệu, lập kế hoạch dạy học môn [MÔN] lớp [LỚP] trong [SỐ TUẦN] tuần. Trình bày dạng bảng: tuần, tên bài hoặc chủ đề, số tiết, yêu cầu cần đạt, đồ dùng cần chuẩn bị, ghi chú. Chỉ dùng nội dung có trong nguồn. Chỗ nào tài liệu không đủ căn cứ, hãy nói rõ thiếu thông tin gì.`,
 nt:[["Tải vào sổ tay","Chương trình môn học, sách giáo viên, khung kế hoạch giáo dục của trường."]]},
 {n:9,t:"Tài liệu tập huấn thành nội dung báo cáo tổ",w:"Vừa đi tập huấn về, cần báo cáo lại cho tổ chuyên môn và biết áp dụng ngay.",
-p:`Từ tài liệu tập huấn, soạn nội dung để tôi báo cáo lại với tổ chuyên môn trong [SỐ PHÚT] phút, gồm: 5 ý chính cần nhớ; những điểm khác so với cách làm hiện nay; 3 việc giáo viên áp dụng được ngay ở lớp, kèm ví dụ cho môn [MÔN]; những câu hỏi cần xin ý kiến thêm. Ghi kèm số trích dẫn.`},
+p:`Từ tài liệu tập huấn, soạn nội dung để tôi báo cáo lại với tổ chuyên môn trong [SỐ PHÚT BÁO CÁO] phút, gồm: 5 ý chính cần nhớ; những điểm khác so với cách làm hiện nay; 3 việc giáo viên áp dụng được ngay ở lớp, kèm ví dụ cho môn [MÔN]; những câu hỏi cần xin ý kiến thêm. Ghi kèm số trích dẫn.`},
 {n:10,t:"Bảng tiêu chí đánh giá sản phẩm của học sinh",w:"Cần bảng tiêu chí để nhận xét sản phẩm hoặc hoạt động, dán thẳng vào Word.",
 p:`Dựa trên tài liệu, xây dựng bảng tiêu chí đánh giá [SẢN PHẨM/HOẠT ĐỘNG] của học sinh lớp [LỚP], môn [MÔN]. Gồm 4–5 tiêu chí, mỗi tiêu chí có 3 mức (Hoàn thành tốt, Hoàn thành, Cần cố gắng) mô tả bằng ngôn ngữ học sinh hiểu được, kèm một ô nhận xét. Viết dạng bảng để tôi dán thẳng vào Word, kèm 2–3 dòng hướng dẫn cách dùng.`}
 ]},
@@ -297,15 +300,52 @@ const ul=mk('ul','ck');
 ['<b>Chính xác về kiến thức:</b> AI không tự ý đổi dữ kiện, số liệu, tên nhân vật, công thức.','<b>Chính xác về lời thoại:</b> mỗi câu thoại đúng nhân vật theo tranh. Nghe lại toàn bộ video.','<b>Đồng nhất nhân vật:</b> dùng cùng ảnh tham chiếu, mô tả ngoại hình và bối cảnh nhất quán.','<b>Không lạm dụng hiệu ứng:</b> tránh chuyển động mạnh làm học sinh mất tập trung.','<b>Kiểm soát thời lượng:</b> lời thoại dài phải chia cảnh, không nói quá nhanh, không bị cắt tiếng.','<b>Kiểm tra sản phẩm cuối:</b> đối chiếu video với SGK về hình ảnh, lời thoại, kiến thức, thời lượng.','<b>Học liệu và bản quyền:</b> hình ảnh SGK có bản quyền, chỉ dùng trong phạm vi được phép và tuân thủ quy định khi chia sẻ, đăng tải công khai.'].forEach(x=>{const li=mk('li'),lb=mk('label'),i=mk('input');i.type='checkbox';lb.append(i);lb.insertAdjacentHTML('beforeend',' '+x);li.append(lb);ul.append(li)});
 cb.append(ul,el('p','end','Từ một bức tranh tĩnh trong sách giáo khoa, giáo viên có thể tạo nên một tình huống học tập sinh động, gần gũi và hấp dẫn học sinh. Điều quan trọng không chỉ là làm cho hình ảnh chuyển động, mà còn phải giữ được tính chính xác của kiến thức và mục tiêu sư phạm của bài học.'));
 ck.append(mk('div','no','✓'),cb);gd.append(ck);
+
+const g2=$('#guide2');
+function ent(n,t,f){const d=mk('details');d.append(mk('summary',null,n+'. '+t));
+[['Chuẩn bị',f[0]],['Điền các ô',f[1]],['Bạn nhận được',f[2]],['Chỉnh tiếp và kiểm tra',f[3]]].forEach(([l,x])=>d.append(el('p',null,`<b>${l}:</b> ${x}`)));return d}
+function grp(bd,t,i,es){const c=mk('section','card'),b=mk('div');b.append(el('h3',null,t),el('p',null,i));es.forEach(e=>b.append(ent(...e)));c.append(mk('div','no',bd),b);return c}
+const A0='Mở một AI trò chuyện bất kỳ (Claude, ChatGPT, Gemini…).';
+const B0='Tải tài liệu vào một sổ tay NotebookLM (file PDF, Word hoặc dán chữ).';
+const C0='Mở công cụ tạo ảnh hoặc video bạn đang dùng (Gemini, ChatGPT, Google Flow…).';
+g2.append(el('h2',null,'Hướng dẫn sử dụng 14 prompt'),el('p','gs','Làm theo 5 bước chung, rồi mở từng prompt bên dưới để xem cần điền gì, nhận được gì và chỉnh tiếp thế nào.'));
+g2.append(el('div','box',`<b>5 bước dùng bất kỳ prompt nào</b><ol class="st"><li><b>Chọn đúng prompt.</b> Bấm tab phù hợp, đọc dòng “Dùng khi nào” của từng prompt. Không biết chọn gì thì gõ từ khóa vào ô tìm kiếm.</li><li><b>Điền các ô.</b> Ô Môn và Lớp ở đầu trang dùng chung cho mọi prompt. Chỗ tô vàng trong khung prompt là chưa điền, điền xong sẽ đổi sang chữ bạn gõ. Thông tin được nhớ trên máy bạn, bấm “Xóa thông tin đã nhập” để làm lại.</li><li><b>Bấm Sao chép.</b> Nút báo “Đã sao chép ✓” là xong. Nếu chưa chép được, hãy bôi đen khung prompt và nhấn Ctrl+C.</li><li><b>Dán vào AI rồi gửi.</b> Nhấn Ctrl+V, trên điện thoại thì nhấn giữ ô chat rồi chọn Dán. Với tab Xử lý tài liệu, phải tải tài liệu lên trước khi dán.</li><li><b>Đọc kỹ rồi chỉnh tiếp.</b> Kết quả đầu tiên chỉ là bản nháp. Nhắn thêm ngay trong cùng cuộc trò chuyện để AI sửa, không cần dán lại prompt.</li></ol>`));
+g2.append(el('div','box','<b>Nên dùng AI nào?</b>'+tbl(['Tab','Công cụ nên dùng','Lưu ý'],[['Việc hằng ngày trên lớp','Một AI trò chuyện bất kỳ','Không cần tải tài liệu. Dán prompt và gửi.'],['Xử lý tài liệu','NotebookLM (dùng AI khác thì đính kèm tài liệu cùng lúc)','Phải tải tài liệu trước, AI mới trả lời đúng theo tài liệu.'],['Hình ảnh và video','Công cụ tạo ảnh, video','Nên thử một ảnh hoặc một cảnh trước, ưng rồi mới làm cả bộ.']])));
+g2.append(grp('A','Tab Việc hằng ngày trên lớp (prompt 1 đến 6)','Dán vào AI trò chuyện, không cần tài liệu.',[
+[1,'Soạn kế hoạch bài dạy',[A0,'Môn, lớp, tên bài (ghi đúng như sách), số tiết. Ở ô Điều kiện lớp học, ghi sĩ số, thiết bị, đồ dùng có sẵn, ví dụ “lớp 40 em, có máy chiếu, không có internet”.','Bản nháp kế hoạch gồm yêu cầu cần đạt, đồ dùng và 4 hoạt động (Khởi động, Khám phá, Luyện tập – Thực hành, Vận dụng).','Đối chiếu yêu cầu cần đạt với sách giáo viên. Nhắn thêm: “Rút hoạt động 2 còn 10 phút”, hoặc dán mẫu của trường rồi dặn “trình bày đúng theo mẫu này”.']],
+[2,'Gợi ý hoạt động khởi động',[A0,'Tên bài, môn, lớp.','5 hoạt động 3–5 phút, mỗi hoạt động có cách chơi, đồ dùng, câu dẫn vào bài.','Nhắn: “Viết chi tiết các bước và lời dẫn của hoạt động số 3”. Thử chơi trước khi dạy để chắc chắn an toàn, vừa thời gian.']],
+[3,'Soạn phiếu bài tập, câu hỏi ôn tập',[A0,'Số câu (ví dụ 10), nội dung ôn (ví dụ “nhận biết màu nóng, màu lạnh”), môn, lớp.','Phiếu ôn tập chia 3 mức (nhận biết, kết nối, vận dụng), kèm đáp án và gợi ý chấm.','Tự làm thử phiếu để kiểm tra đáp án. Nhắn: “Đổi mức vận dụng sang dạng điền khuyết” hoặc “Giảm còn 8 câu”.']],
+[4,'Ý tưởng bài thực hành có sản phẩm',[A0,'Chủ đề, môn, lớp; Vật liệu (ví dụ “giấy màu, lá cây, hộp giấy cũ”); Số phút học sinh làm (ví dụ 35).','3 ý tưởng, mỗi ý có tên sản phẩm, các bước làm, câu hỏi gợi mở khi trưng bày, cách mở rộng cho em làm nhanh.','Chọn một ý rồi nhắn: “Viết thành các bước hướng dẫn học sinh và lời nhận xét mẫu”. Nên tự làm một sản phẩm mẫu trước khi dạy.']],
+[5,'Viết lời nhận xét học sinh',[A0+' Không ghi họ tên đầy đủ hay thông tin định danh của em.','Kỳ hoặc năm (ví dụ “học kì I”), lớp, môn; Điểm mạnh (ví dụ “chăm chỉ, phối màu hài hòa”); Cần cố gắng (ví dụ “cần giữ bàn học gọn hơn”).','3 cách diễn đạt khác nhau, mỗi cách 2–3 câu, giọng ấm áp.','Làm lần lượt từng em, thay thông tin mỗi lần. Chọn một cách rồi sửa cho đúng em và đúng quy định ghi nhận xét của trường. Nhắn “ngắn hơn còn 2 câu” nếu cần.']],
+[6,'Soạn thông báo gửi phụ huynh',[A0,'Lớp, Nội dung thông báo (ví dụ “mang đủ dụng cụ học Mĩ thuật”), Thời gian (ví dụ “trước thứ Sáu tuần này”).','2 bản: bản đầy đủ đăng nhóm lớp và bản rất ngắn để nhắn tin.','Kiểm tra lại ngày, giờ, địa điểm, tên giáo viên trước khi gửi. Nhắn: “Thêm lời cảm ơn”, “Đổi xưng hô cho thân mật hơn”.']]]));
+g2.append(grp('B','Tab Xử lý tài liệu (prompt 7 đến 10)','Phải tải tài liệu vào NotebookLM trước. AI chỉ trả lời dựa trên tài liệu bạn đưa.',[
+[7,'Công văn thành danh sách việc cần làm',[B0+' Ví dụ: công văn hoặc kế hoạch cần triển khai.','Không có ô nào cần điền. Dán prompt và gửi.','Danh sách kiểm tra có ô [ ], tách việc của giáo viên với việc của tổ và nhà trường, chia giai đoạn, ghi hạn, kèm số trích dẫn.','Bấm vào số trích dẫn để xem đúng đoạn gốc và đối chiếu. Nhắn: “Chỉ giữ việc của giáo viên, xếp theo hạn hoàn thành”.']],
+[8,'Chương trình, sách giáo viên thành kế hoạch dạy học',[B0+' Nên tải chương trình môn học, sách giáo viên, khung kế hoạch giáo dục của trường.','Môn, lớp, số tuần (ví dụ 35).','Bảng kế hoạch theo tuần: tên bài hoặc chủ đề, số tiết, yêu cầu cần đạt, đồ dùng, ghi chú.','Nếu AI báo “thiếu thông tin”, hãy tải thêm tài liệu rồi gửi lại. Nhắn: “Chia thành học kì I và học kì II”. Đối chiếu với phân phối chương trình của trường.']],
+[9,'Tài liệu tập huấn thành nội dung báo cáo tổ',[B0+' Ví dụ: tài liệu, bài trình chiếu của buổi tập huấn.','Số phút báo cáo (ví dụ 10), môn.','5 ý chính, điểm khác với cách làm hiện nay, 3 việc áp dụng ngay ở lớp, câu hỏi cần xin ý kiến, có trích dẫn.','Nhắn: “Viết lại thành 5 gạch đầu dòng để đưa lên slide”. Kiểm tra số trích dẫn trước khi báo cáo.']],
+[10,'Bảng tiêu chí đánh giá sản phẩm của học sinh',[B0+' Nên tải tài liệu hướng dẫn đánh giá của môn.','Sản phẩm hoặc hoạt động (ví dụ “bài vẽ tranh cuối chủ đề”), lớp, môn.','Bảng 4–5 tiêu chí, mỗi tiêu chí 3 mức (Hoàn thành tốt, Hoàn thành, Cần cố gắng), có ô nhận xét. Dán thẳng vào Word được.','Nhắn: “Thêm cột tự đánh giá của học sinh bằng hình mặt cười”. Đọc lại cho đúng quy định đánh giá hiện hành.']]]));
+g2.append(grp('C','Tab Hình ảnh và video (prompt 11 đến 14)','Dán vào công cụ tạo ảnh hoặc video. Các prompt này dùng chung ô Phong cách và Mô tả nhân vật, điền một lần là dùng cho cả bộ.',[
+[11,'Tranh minh họa cho bài học',[C0,'Tên bài, môn, lớp; Cảnh cần vẽ (mô tả cụ thể, ví dụ “hai bạn nhỏ tưới cây trong sân trường”); Phong cách (ví dụ “tranh màu nước, nét hoạt hình dễ thương”); Tỉ lệ (16:9 để chiếu, 4:3 để in).','Một tranh không có chữ trong ảnh.','Nhắn: “Giữ nguyên bố cục, đổi sang buổi sáng”. Kiểm tra chi tiết kiến thức (số lượng, hình dạng). Thêm chữ sau bằng PowerPoint hoặc Canva.']],
+[12,'Bảng nhân vật để vẽ giống nhau nhiều lần',[C0,'Tên nhân vật; Mô tả nhân vật (ví dụ “bé gái 7 tuổi, tóc buộc hai bên, áo vàng, ba lô xanh”); Phong cách.','Bảng nhân vật 4 góc nhìn, 4 biểu cảm, kèm một đoạn mô tả ngoại hình cố định.','Lưu đoạn mô tả đó, dán vào ô Mô tả nhân vật của prompt 11, 13, 14. Nếu công cụ cho đính kèm ảnh, đính kèm luôn bảng nhân vật.']],
+[13,'Câu chuyện, bài đọc thành kịch bản phân cảnh',[A0+' Sau đó dùng công cụ tạo ảnh hoặc video.','Dán câu chuyện vào ô Nội dung câu chuyện; Số cảnh (ví dụ 5); Phong cách.','Bảng các cảnh: bối cảnh, nhân vật, hành động, lời dẫn tiếng Việt, và một prompt tạo ảnh tiếng Anh cho mỗi cảnh.','Kiểm tra không có tình tiết lạ ngoài bài. Lấy prompt từng cảnh dán vào công cụ tạo ảnh. Nhắn: “Rút lời dẫn mỗi cảnh còn 1 câu”.']],
+[14,'Video ngắn minh họa một cảnh',[C0+' Công cụ phải hỗ trợ tạo video.','Số giây (ví dụ 8), Nội dung cảnh, lớp, Phong cách, Camera (ví dụ “từ từ đưa gần vào nhân vật”), Mô tả nhân vật (dán đoạn đã lưu từ prompt 12).','Một clip ngắn, nhạc nền nhẹ, không lời thoại, không chữ.','Xem toàn bộ clip trước khi chiếu. Sai thì tạo lại và chỉ đổi một yếu tố mỗi lần. Muốn ghép nhiều cảnh, thêm chữ, thêm giọng, xem tab HD tạo video từ tranh SGK.']]]));
+const fu=el('section','card');const f2b=mk('div');f2b.append(el('h3',null,'Câu nhắn chỉnh sửa dùng chung'),el('p',null,'Gửi tiếp trong cùng cuộc trò chuyện sau khi AI trả kết quả. Thay phần trong ngoặc vuông.'));
+f2b.append(pbox('Chọn câu phù hợp rồi sao chép','Ngắn gọn hơn, còn khoảng [số] dòng.\nViết lại đơn giản hơn cho học sinh lớp [lớp] hiểu.\nGiữ nguyên phần [phần cần giữ], chỉ sửa phần [phần cần sửa].\nCho thêm 2 cách khác để tôi chọn.\nTrình bày dạng bảng để tôi dán vào Word.\nChỉ dùng thông tin trong tài liệu, chỗ nào không có thì nói rõ.'));
+fu.append(mk('div','no','+'),f2b);g2.append(fu);
+const tr2=mk('section','card'),tb2=mk('div');tb2.append(el('h3',null,'Kết quả chưa ưng thì làm gì?'));
+tb2.append(el('div','tw',tbl(['Tình huống','Cách xử lý'].map(x=>x),[['AI trả lời chung chung','Điền cụ thể hơn: tên bài, nội dung, điều kiện lớp, ví dụ thật. Rồi nhắn AI viết lại.'],['Kết quả quá dài hoặc quá khó','Nhắn: “Rút gọn”, “Viết đơn giản hơn cho học sinh lớp [lớp]”.'],['Kiến thức hoặc số liệu có vẻ sai','Đối chiếu sách giáo khoa, sách giáo viên rồi nhắn AI sửa. Không dùng khi chưa kiểm tra.'],['NotebookLM báo nguồn không đề cập','Tải thêm tài liệu liên quan (kế hoạch mẫu, báo cáo, tiêu chí) vào cùng sổ tay.'],['Ảnh hoặc video có chữ sai, con số sai','Tạo ảnh không chữ rồi thêm chữ bằng PowerPoint, Canva hoặc CapCut.'],['Nhân vật mỗi lần một khác','Dùng prompt 12, lưu đoạn mô tả cố định và dán vào mọi prompt sau.']])));
+tr2.append(mk('div','no','?'),tb2);g2.append(tr2);
+const sf=mk('section','card'),sb=mk('div');sb.append(el('h3',null,'Dùng AI an toàn trong nhà trường'));
+const su=mk('ul','ck');['Không nhập họ tên đầy đủ, ảnh thật hay thông tin định danh của học sinh vào AI.','Không dán thông tin nội bộ nhạy cảm của nhà trường lên công cụ AI không được phép.','Coi kết quả của AI là bản nháp. Luôn đọc, đối chiếu sách giáo khoa và quy định rồi mới dùng.','Văn bản chính thức, nhận xét vào học bạ do giáo viên quyết định và chịu trách nhiệm.'].forEach(x=>{const li=mk('li',null,x);su.append(li)});
+sb.append(su);sf.append(mk('div','no','✓'),sb);g2.append(sf);
 let act=0;
 const tb=document.querySelectorAll('#tabs button');
 function show(){const q=$('#q').value.trim().toLowerCase();let any=false;
 groups.forEach((g,gi)=>{let n=0;g.items.forEach(i=>{const h=q?!i.txt.includes(q):gi!==act;i.tr.hidden=i.s.hidden=h;if(!h)n++});g.els.forEach(el=>el.hidden=!n);any=any||n>0});
-const gm=!q&&act===3;$('#no').hidden=any||gm;$('#tw').hidden=gm;$('#guide').hidden=!gm;
+const gm=!q&&act>=3;$('#no').hidden=any||gm;$('#tw').hidden=gm;$('#guide').hidden=!(gm&&act===3);$('#guide2').hidden=!(gm&&act===4);
 tb.forEach(b=>b.setAttribute('aria-pressed',String(!q&&+b.dataset.g===act)))}
 tb.forEach(b=>b.onclick=()=>{act=+b.dataset.g;$('#q').value='';show();try{history.replaceState(null,'','#g'+act)}catch(e){}});
 $('#q').oninput=show;
-const hm=/^#g([0-3])$/.exec(location.hash);if(hm)act=+hm[1];show();
+const hm=/^#g([0-4])$/.exec(location.hash);if(hm)act=+hm[1];show();
 $('#rs').onclick=()=>{V={'MÔN':'Mĩ thuật'};save();Object.keys(I).forEach(k=>I[k].forEach(i=>i.value=V[k]||''));R.forEach(r=>draw(r.pre,r.t))};
 </script>
 </body>
